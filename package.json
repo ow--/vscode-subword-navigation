@@ -31,7 +31,7 @@
 		"onCommand:subwordNavigation.deleteSubwordLeft",
 		"onCommand:subwordNavigation.deleteSubwordRight"
 	],
-	"main": "./out/src/extension",
+	"main": "./out/extension",
 	"scripts": {
 		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
 		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
