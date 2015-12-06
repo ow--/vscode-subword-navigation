@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="128" height="128">
+    <g style="fill:rgb(171,155,194)">
+        <rect x="8" y="64" width="8" height="10" />
+        <rect x="21" y="64" width="8" height="10" />
+        <rect x="34" y="64" width="8" height="10" />
+        <rect x="48" y="55" width="7" height="19" />
+        <rect x="60" y="64" width="8" height="10" />
+        <rect x="73" y="64" width="8" height="10" />
+        <rect x="87" y="55" width="7" height="19" />
+        <rect x="99" y="64" width="8" height="10" />
+        <rect x="112" y="64" width="8" height="10" />
+    </g>
+    <g style="fill:rgb(176,175,175)">
+        <rect x="44" y="53" width="2" height="5" />
+        <rect x="44" y="59" width="2" height="5" />
+        <rect x="44" y="65" width="2" height="5" />
+        <rect x="44" y="71" width="2" height="5" />
+    </g>
+    <rect x="83" y="53" width="2" height="23" style="fill:black" />
+</svg>
