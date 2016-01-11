@@ -13,3 +13,5 @@ subwordNavigation.cursorSubwordRightSelect
 subwordNavigation.deleteSubwordLeft
 subwordNavigation.deleteSubwordRight
 ```
+## Limitations
+Currently doesn't support multiple selections.

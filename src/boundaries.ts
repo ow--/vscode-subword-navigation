@@ -39,12 +39,17 @@ export function nextBoundaryRight(document: TextDocument, position: Position) {
     // not actually within a word
     // find beginning of next one or mimic cursorWordRight's line/whitespace handling
     if (!range || range.end.isEqual(position)) {
-        for (let i = position.translate(0, 1); i.isBeforeOrEqual(line.range.end); i = i.translate(0, 1)) {
-            if (!/\s/.test(line.text[i.character])) return i;
+        if (position.character === line.range.end.character) {
+            if (position.line + 1 >= document.lineCount) return position;
+            const nextLine = document.lineAt(position.line + 1);
+            return nextLine.range.start.translate(0, nextLine.firstNonWhitespaceCharacterIndex);
         }
-        if (position.line + 1 >= document.lineCount) return position;
-        const nextLine = document.lineAt(position.line + 1);
-        return nextLine.range.start.translate(0, nextLine.firstNonWhitespaceCharacterIndex);
+        let off = 1;
+        for (let i = position.translate(0, 0); i.isBeforeOrEqual(line.range.end); i = i.translate(0, 1)) {
+            if (!/\s/.test(line.text[i.character])) return i.translate(0, off);
+            off = 0;
+        }
+        return line.range.end;
     }
 
     // find next word boundary
@@ -57,19 +62,40 @@ export function nextBoundaryRight(document: TextDocument, position: Position) {
 }
 
 function isBoundary(text: string, position: Position) {
-    const prev = text[position.character - 1];
-    const cur = text[position.character];
-    const next = text[position.character + 1];
-    if (cur === '_' && prev !== '_') {
-        return true;
-    } else if (prev === '_' && cur !== '_') {
-        return true;
-    } else if (isUpper(cur) && !(isUpper(prev) && (isUpper(next) || next === '_'))) {
-        return true;
-    }
+    const prev = char(text[position.character - 1]);
+    const cur = char(text[position.character]);
+    const next = char(text[position.character + 1]);
+    
+    if (cur.underscore && !prev.underscore) return true;
+    else if (prev.underscore && !cur.underscore) return true;
+    else if (cur.numeric && !prev.numeric) return true;
+    else if (prev.numeric && !cur.numeric) return true;
+    else if (cur.upper && prev.lower) return true;
+    else if (cur.upper && next.lower) return true;
+    
     return false;
 }
 
+function char(c: string) {
+    const cl = { none: false, upper: false, lower: false, numeric: false, underscore: false };
+    
+    if (!c) cl.none = true;
+    else if (c === '_') cl.underscore = true;
+    else if (isNumber(c)) cl.numeric = true;
+    else if (isUpper(c)) cl.upper = true;
+    else if (isLower(c)) cl.lower = true;
+    
+    return cl;
+}
+
 function isUpper(c: string) {
-	return !c || c === c.toUpperCase() && c !== c.toLowerCase();
+	return c === c.toUpperCase() && c !== c.toLowerCase();
+}
+
+function isLower(c: string) {
+	return c === c.toLowerCase() && c !== c.toUpperCase();
+}
+
+function isNumber(c: string) {
+    return !!(<any>c / 0);
 }
