@@ -1,46 +1,62 @@
-import { Selection, TextEditor, TextEditorEdit, TextEditorRevealType } from 'vscode';
-import { nextBoundaryLeft, nextBoundaryRight } from './boundaries';
+import { Selection, TextDocument, TextEditor, TextEditorEdit, TextEditorRevealType, Position } from 'vscode';
+import { nextBoundaryLeft as left, nextBoundaryRight as right } from './boundaries';
 
 export function cursorSubwordLeft(editor: TextEditor) {
-    const pos = nextBoundaryLeft(editor.document, editor.selection.active);
-    editor.selection = new Selection(pos, pos);
-    editor.revealRange(editor.selection, TextEditorRevealType.InCenterIfOutsideViewport);
+    cursorSubword(editor, left, move);
 }
 
 export function cursorSubwordRight(editor: TextEditor) {
-    const pos = nextBoundaryRight(editor.document, editor.selection.active);
-    editor.selection = new Selection(pos, pos);
-    editor.revealRange(editor.selection, TextEditorRevealType.InCenterIfOutsideViewport);
+    cursorSubword(editor, right, move);
 }
 
 export function cursorSubwordLeftSelect(editor: TextEditor) {
-    const pos = nextBoundaryLeft(editor.document, editor.selection.active);
-    editor.selection = new Selection(editor.selection.anchor, pos);
-    editor.revealRange(editor.selection, TextEditorRevealType.InCenterIfOutsideViewport);
+    cursorSubword(editor, left, select);
 }
 
 export function cursorSubwordRightSelect(editor: TextEditor) {
-    const pos = nextBoundaryRight(editor.document, editor.selection.active);
-    editor.selection = new Selection(editor.selection.anchor, pos);
-    editor.revealRange(editor.selection, TextEditorRevealType.InCenterIfOutsideViewport);
+    cursorSubword(editor, right, select);
 }
 
-export function deleteSubwordLeft(editor: TextEditor, edit: TextEditorEdit) {
-    if (!editor.selection.isEmpty) {
-        edit.delete(editor.selection);
-        return;
-    }
-    const pos = nextBoundaryLeft(editor.document, editor.selection.active);
-    edit.delete(editor.selection.with(pos));
-    editor.revealRange(editor.selection, TextEditorRevealType.InCenterIfOutsideViewport);
+export function deleteSubwordLeft(editor: TextEditor) {
+    deleteSubword(editor, left);
 }
 
-export function deleteSubwordRight(editor: TextEditor, edit: TextEditorEdit) {
-    if (!editor.selection.isEmpty) {
-        edit.delete(editor.selection);
-        return;
+export function deleteSubwordRight(editor: TextEditor) {
+    deleteSubword(editor, right);
+}
+
+type BoundaryFunc = (doc: TextDocument, pos: Position) => Position;
+type SelectionFunc = (selection: Selection, boundary: Position) => Selection;
+
+function move(selection: Selection, boundary: Position) {
+    return new Selection(boundary, boundary);
+}
+
+function select(selection: Selection, boundary: Position) {
+    return new Selection(selection.anchor, boundary);
+}
+
+function cursorSubword(editor: TextEditor, nextBoundary: BoundaryFunc, createSelection: SelectionFunc) {
+    editor.selections = editor.selections.map(selection => {
+        const pos = nextBoundary(editor.document, selection.active);
+        return createSelection(selection, pos);
+    });
+    reveal(editor);
+}
+
+function deleteSubword(editor: TextEditor, nextBoundary: BoundaryFunc) {
+    let edit = new Promise<boolean>(resolve => resolve());
+    editor.selections.forEach(selection => {
+        const s = selection.isEmpty
+            ? selection.with(nextBoundary(editor.document, selection.active))
+            : selection;
+        edit = edit.then(() => editor.edit(e => e.delete(s)));
+    });
+    edit.then(() => reveal(editor));
+}
+
+function reveal(editor: TextEditor) {
+    if (editor.selections.length === 1) {
+        editor.revealRange(editor.selection, TextEditorRevealType.InCenterIfOutsideViewport);
     }
-    const pos = nextBoundaryRight(editor.document, editor.selection.active);
-    edit.delete(editor.selection.with(pos));
-    editor.revealRange(editor.selection, TextEditorRevealType.InCenterIfOutsideViewport);
 }
