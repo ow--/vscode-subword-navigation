@@ -25,8 +25,24 @@ export function deleteSubwordRight(editor: TextEditor) {
     deleteSubword(editor, right);
 }
 
-type BoundaryFunc = (doc: TextDocument, pos: Position) => Position;
-type SelectionFunc = (selection: Selection, boundary: Position) => Selection;
+function cursorSubword(editor: TextEditor, next: BoundaryFunc, sel: SelectionFunc) {
+    editor.selections = editor.selections.map(s => 
+        sel(s, next(editor.document, s.active)));
+    reveal(editor);
+}
+
+function deleteSubword(editor: TextEditor, next: BoundaryFunc) {
+    let edit = Promise.resolve(true);
+    editor.selections.forEach(s => edit = edit.then(() => 
+        editor.edit(e => e.delete(s.isEmpty ? s.with(next(editor.document, s.active)) : s))));
+    edit.then(() => reveal(editor));
+}
+
+function reveal(editor: TextEditor) {
+    if (editor.selections.length === 1) {
+        editor.revealRange(editor.selection, TextEditorRevealType.InCenterIfOutsideViewport);
+    }
+}
 
 function move(selection: Selection, boundary: Position) {
     return new Selection(boundary, boundary);
@@ -36,27 +52,5 @@ function select(selection: Selection, boundary: Position) {
     return new Selection(selection.anchor, boundary);
 }
 
-function cursorSubword(editor: TextEditor, nextBoundary: BoundaryFunc, createSelection: SelectionFunc) {
-    editor.selections = editor.selections.map(selection => {
-        const pos = nextBoundary(editor.document, selection.active);
-        return createSelection(selection, pos);
-    });
-    reveal(editor);
-}
-
-function deleteSubword(editor: TextEditor, nextBoundary: BoundaryFunc) {
-    let edit = new Promise<boolean>(resolve => resolve());
-    editor.selections.forEach(selection => {
-        const s = selection.isEmpty
-            ? selection.with(nextBoundary(editor.document, selection.active))
-            : selection;
-        edit = edit.then(() => editor.edit(e => e.delete(s)));
-    });
-    edit.then(() => reveal(editor));
-}
-
-function reveal(editor: TextEditor) {
-    if (editor.selections.length === 1) {
-        editor.revealRange(editor.selection, TextEditorRevealType.InCenterIfOutsideViewport);
-    }
-}
+type BoundaryFunc = (doc: TextDocument, pos: Position) => Position;
+type SelectionFunc = (selection: Selection, boundary: Position) => Selection;

@@ -1,43 +1,44 @@
 {
-	"name": "vscode-subword-navigation",
-	"version": "1.1.0",
-	"publisher": "ow",
-	"displayName": "Subword Navigation",
-	"description": "The missing code navigation feature.",
-	"icon": "images/icon.svg",
-	"galleryBanner": {
-		"color": "#efedf9",
-		"theme": "light"
-	},
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/ow--/vscode-subword-navigation.git"
-	},
-	"bugs": {
-		"url": "https://github.com/ow--/vscode-subword-navigation/issues"
-	},
-	"engines": {
-		"vscode": "0.10.x"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onCommand:subwordNavigation.cursorSubwordLeft",
-		"onCommand:subwordNavigation.cursorSubwordRight",
-		"onCommand:subwordNavigation.cursorSubwordLeftSelect",
-		"onCommand:subwordNavigation.cursorSubwordRightSelect",
-		"onCommand:subwordNavigation.deleteSubwordLeft",
-		"onCommand:subwordNavigation.deleteSubwordRight"
-	],
-	"main": "./out/extension",
-	"scripts": {
-		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
-		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
-	},
-	"devDependencies": {
-		"typescript": "^1.6.2",
-		"vscode": "0.10.x"
-	}
+    "name": "vscode-subword-navigation",
+    "version": "1.1.1",
+    "publisher": "ow",
+    "displayName": "Subword Navigation",
+    "description": "The missing code navigation feature.",
+    "icon": "images/icon.svg",
+    "galleryBanner": {
+        "color": "#efedf9",
+        "theme": "light"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ow--/vscode-subword-navigation.git"
+    },
+    "bugs": {
+        "url": "https://github.com/ow--/vscode-subword-navigation/issues"
+    },
+    "engines": {
+        "vscode": "0.10.x"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:subwordNavigation.cursorSubwordLeft",
+        "onCommand:subwordNavigation.cursorSubwordRight",
+        "onCommand:subwordNavigation.cursorSubwordLeftSelect",
+        "onCommand:subwordNavigation.cursorSubwordRightSelect",
+        "onCommand:subwordNavigation.deleteSubwordLeft",
+        "onCommand:subwordNavigation.deleteSubwordRight"
+    ],
+    "main": "./out/extension",
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+        "compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
+    },
+    "devDependencies": {
+        "typescript": "^1.8.9",
+        "vscode": "^0.11.x"
+    }
 }
