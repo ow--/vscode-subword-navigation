@@ -8,6 +8,7 @@ export function nextBoundaryLeft(document: TextDocument, position: Position) {
     const cur = document.lineAt(position);
     if (position.character > 0) {
         for (let i = position.translate(0, -1); i.isAfterOrEqual(cur.range.start); i = i.translate(0, -1)) {
+            if (i.character < 1) return i;
             if (isBoundary(cur.text, i)) return i;
         }
     }
