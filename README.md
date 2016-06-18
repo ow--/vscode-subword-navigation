@@ -13,3 +13,40 @@ subwordNavigation.cursorSubwordRightSelect
 subwordNavigation.deleteSubwordLeft
 subwordNavigation.deleteSubwordRight
 ```
+
+## Quickstart example (keybindings.json)
+```js
+// Place your key bindings in this file to overwrite the defaults
+[
+    {
+        "key": "ctrl+left",
+        "command": "subwordNavigation.cursorSubwordLeft",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+right",
+        "command": "subwordNavigation.cursorSubwordRight",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+left",
+        "command": "subwordNavigation.cursorSubwordLeftSelect",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+right",
+        "command": "subwordNavigation.cursorSubwordRightSelect",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+backspace",
+        "command": "subwordNavigation.deleteSubwordLeft",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+delete",
+        "command": "subwordNavigation.deleteSubwordRight",
+        "when": "editorTextFocus"
+    }
+]
+```
