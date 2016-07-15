@@ -26,16 +26,14 @@ export function deleteSubwordRight(editor: TextEditor) {
 }
 
 function cursorSubword(editor: TextEditor, next: BoundaryFunc, sel: SelectionFunc) {
-    editor.selections = editor.selections.map(s => 
-        sel(s, next(editor.document, s.active)));
+    editor.selections = editor.selections.map(s => sel(s, next(editor.document, s.active)));
     reveal(editor);
 }
 
 function deleteSubword(editor: TextEditor, next: BoundaryFunc) {
-    let edit = Promise.resolve(true);
-    editor.selections.forEach(s => edit = edit.then(() => 
-        editor.edit(e => e.delete(s.isEmpty ? s.with(next(editor.document, s.active)) : s))));
-    edit.then(() => reveal(editor));
+    editor
+        .edit(e => editor.selections.forEach(s => e.delete(s.isEmpty ? s.with(next(editor.document, s.active)) : s)))
+        .then(() => reveal(editor));
 }
 
 function reveal(editor: TextEditor) {
