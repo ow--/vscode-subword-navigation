@@ -50,3 +50,38 @@ subwordNavigation.deleteSubwordRight
     }
 ]
 ```
+
+## OS X equivalent example (keybindings.json)
+```js
+// Place your key bindings in this file to overwrite the defaults
+[
+    {
+        "key": "alt+left",
+        "command": "subwordNavigation.cursorSubwordLeft",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+right",
+        "command": "subwordNavigation.cursorSubwordRight",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+alt+right",
+        "command": "subwordNavigation.cursorSubwordRightSelect"
+    },
+    {
+        "key": "shift+alt+left",
+        "command": "subwordNavigation.cursorSubwordLeftSelect"
+    },
+    {
+        "key": "alt+backspace",
+        "command": "subwordNavigation.deleteSubwordLeft",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "alt+delete",
+        "command": "subwordNavigation.deleteSubwordRight",
+        "when": "editorTextFocus"
+    }
+]
+```
