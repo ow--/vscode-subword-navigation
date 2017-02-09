@@ -16,7 +16,9 @@ subwordNavigation.deleteSubwordRight
 
 ## Quickstart example (keybindings.json)
 ```js
-// Place your key bindings in this file to overwrite the defaults
+// Place your key bindings in this file to overwrite the defaults.
+// Note ctrl+left and ctrl+right are reserved for Mission Control on macOS, so
+// this will require an alternative binding.
 [
     {
         "key": "ctrl+left",
