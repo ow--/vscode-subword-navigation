@@ -42,10 +42,7 @@ function isRightBoundary(text: string, position: Position) {
     const next = char(text[position.character + 1]);
 
     if (!prev.separator && cur.separator) return true;
-    // if (cur.underscore && !prev.underscore) return true;
     if (!prev.underscore && cur.underscore) return true;
-    // if (cur.numeric && !prev.numeric) return true;
-    // if (prev.numeric && !cur.numeric) return true;
     if (cur.upper && prev.lower) return true;
     if (cur.upper && next.lower) return true;
 
@@ -58,10 +55,7 @@ function isLeftBoundary(text: string, position: Position) {
     const next = char(text[position.character + 1]);
 
     if (prev.separator && !cur.separator) return true;
-    // if (cur.underscore && !prev.underscore) return true;
     if (prev.underscore && !cur.underscore) return true;
-    // if (cur.numeric && !prev.numeric) return true;
-    // if (prev.numeric && !cur.numeric) return true;
     if (cur.upper && prev.lower) return true;
     if (cur.upper && next.lower) return true;
 
