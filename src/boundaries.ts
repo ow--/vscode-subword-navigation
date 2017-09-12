@@ -9,7 +9,7 @@ export function nextBoundaryLeft(document: TextDocument, position: Position) {
     if (position.isAfter(cur.range.start)) {
         for (let i = position.translate(0, -1); i.isAfterOrEqual(cur.range.start); i = i.translate(0, -1)) {
             if (i.isEqual(cur.range.start)) return i;
-            if (isBoundary(cur.text, i)) return i;
+            if (isLeftBoundary(cur.text, i)) return i;
         }
     }
 
@@ -27,7 +27,7 @@ export function nextBoundaryRight(document: TextDocument, position: Position) {
     const cur = document.lineAt(position);
     for (let i = position.translate(0, 1); i.isBeforeOrEqual(cur.range.end); i = i.translate(0, 1)) {
         if (i.isEqual(cur.range.end)) return i;
-        if (isBoundary(cur.text, i)) return i;
+        if (isRightBoundary(cur.text, i)) return i;
     }
 
     // found no boundary before line end
@@ -36,16 +36,32 @@ export function nextBoundaryRight(document: TextDocument, position: Position) {
     return next.range.start.translate(0, next.firstNonWhitespaceCharacterIndex);
 }
 
-function isBoundary(text: string, position: Position) {
+function isRightBoundary(text: string, position: Position) {
     const prev = char(text[position.character - 1]);
     const cur = char(text[position.character]);
     const next = char(text[position.character + 1]);
 
-    if (prev.separator !== cur.separator) return true;
-    if (cur.underscore && !prev.underscore) return true;
+    if (!prev.separator && cur.separator) return true;
+    // if (cur.underscore && !prev.underscore) return true;
+    if (!prev.underscore && cur.underscore) return true;
+    // if (cur.numeric && !prev.numeric) return true;
+    // if (prev.numeric && !cur.numeric) return true;
+    if (cur.upper && prev.lower) return true;
+    if (cur.upper && next.lower) return true;
+
+    return false;
+}
+
+function isLeftBoundary(text: string, position: Position) {
+    const prev = char(text[position.character - 1]);
+    const cur = char(text[position.character]);
+    const next = char(text[position.character + 1]);
+
+    if (prev.separator && !cur.separator) return true;
+    // if (cur.underscore && !prev.underscore) return true;
     if (prev.underscore && !cur.underscore) return true;
-    if (cur.numeric && !prev.numeric) return true;
-    if (prev.numeric && !cur.numeric) return true;
+    // if (cur.numeric && !prev.numeric) return true;
+    // if (prev.numeric && !cur.numeric) return true;
     if (cur.upper && prev.lower) return true;
     if (cur.upper && next.lower) return true;
 
