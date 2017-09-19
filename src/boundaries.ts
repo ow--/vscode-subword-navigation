@@ -44,7 +44,6 @@ function isRightBoundary(text: string, position: Position) {
     if (!prev.separator && cur.separator) return true;
     if (!prev.underscore && cur.underscore) return true;
     if (cur.upper && prev.lower) return true;
-    if (cur.upper && next.lower) return true;
 
     return false;
 }
@@ -57,7 +56,6 @@ function isLeftBoundary(text: string, position: Position) {
     if (prev.separator && !cur.separator) return true;
     if (prev.underscore && !cur.underscore) return true;
     if (cur.upper && prev.lower) return true;
-    if (cur.upper && next.lower) return true;
 
     return false;
 }
