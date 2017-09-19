@@ -65,13 +65,12 @@ function isLeftBoundary(text: string, position: Position) {
 }
 
 function char(c: string) {
-    const cl = { none: false, whitespace: false, upper: false, lower: false, numeric: false, underscore: false, separator: "" };
+    const cl = { none: false, whitespace: false, upper: false, lower: false, underscore: false, separator: "" };
 
     if (!c) cl.none = true;
     else if (c === '_') cl.underscore = true;
     else if (c === ' ') cl.whitespace = true;
     else if (isSeparator(c)) cl.separator = c;
-    else if (isDigit(c)) cl.numeric = true;
     else if (isUpper(c)) cl.upper = true;
     else if (isLower(c)) cl.lower = true;
 
@@ -84,11 +83,6 @@ function isUpper(c: string) {
 
 function isLower(c: string) {
 	return c === c.toLowerCase() && c !== c.toUpperCase();
-}
-
-function isDigit(c: string) {
-    const d = c.charCodeAt(0);
-    return d >= 0x30 && d <= 0x39;
 }
 
 function isSeparator(c: string) {
