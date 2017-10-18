@@ -43,12 +43,12 @@ subwordNavigation.deleteSubwordRight
     {
         "key": "ctrl+backspace",
         "command": "subwordNavigation.deleteSubwordLeft",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && !editorReadonly"
     },
     {
         "key": "ctrl+delete",
         "command": "subwordNavigation.deleteSubwordRight",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && !editorReadonly"
     }
 ]
 ```
@@ -78,12 +78,12 @@ subwordNavigation.deleteSubwordRight
     {
         "key": "alt+backspace",
         "command": "subwordNavigation.deleteSubwordLeft",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && !editorReadonly"
     },
     {
         "key": "alt+delete",
         "command": "subwordNavigation.deleteSubwordRight",
-        "when": "editorTextFocus"
+        "when": "editorTextFocus && !editorReadonly"
     }
 ]
 ```
