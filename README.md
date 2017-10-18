@@ -69,11 +69,13 @@ subwordNavigation.deleteSubwordRight
     },
     {
         "key": "shift+alt+right",
-        "command": "subwordNavigation.cursorSubwordRightSelect"
+        "command": "subwordNavigation.cursorSubwordRightSelect",
+        "when": "editorTextFocus"
     },
     {
         "key": "shift+alt+left",
-        "command": "subwordNavigation.cursorSubwordLeftSelect"
+        "command": "subwordNavigation.cursorSubwordLeftSelect",
+        "when": "editorTextFocus"
     },
     {
         "key": "alt+backspace",
