@@ -17,73 +17,18 @@ subwordNavigation.deleteSubwordRight
 ## Quickstart example (keybindings.json)
 ```js
 // Place your key bindings in this file to overwrite the defaults.
-// Note ctrl+left and ctrl+right are reserved for Mission Control on macOS, so
-// this will require an alternative binding.
 [
-    {
-        "key": "ctrl+left",
-        "command": "subwordNavigation.cursorSubwordLeft",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+right",
-        "command": "subwordNavigation.cursorSubwordRight",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+shift+left",
-        "command": "subwordNavigation.cursorSubwordLeftSelect",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+shift+right",
-        "command": "subwordNavigation.cursorSubwordRightSelect",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+backspace",
-        "command": "subwordNavigation.deleteSubwordLeft",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "ctrl+delete",
-        "command": "subwordNavigation.deleteSubwordRight",
-        "when": "editorTextFocus"
-    }
-]
-```
-
-## OS X equivalent example (keybindings.json)
-```js
-// Place your key bindings in this file to overwrite the defaults
-[
-    {
-        "key": "alt+left",
-        "command": "subwordNavigation.cursorSubwordLeft",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "alt+right",
-        "command": "subwordNavigation.cursorSubwordRight",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "shift+alt+right",
-        "command": "subwordNavigation.cursorSubwordRightSelect"
-    },
-    {
-        "key": "shift+alt+left",
-        "command": "subwordNavigation.cursorSubwordLeftSelect"
-    },
-    {
-        "key": "alt+backspace",
-        "command": "subwordNavigation.deleteSubwordLeft",
-        "when": "editorTextFocus"
-    },
-    {
-        "key": "alt+delete",
-        "command": "subwordNavigation.deleteSubwordRight",
-        "when": "editorTextFocus"
-    }
+    { "key": "alt+left",            "command": "subwordNavigation.cursorSubwordLeft",
+                                       "when": "editorTextFocus" },
+    { "key": "alt+right",           "command": "subwordNavigation.cursorSubwordRight",
+                                       "when": "editorTextFocus" },
+    { "key": "alt+shift+left",      "command": "subwordNavigation.cursorSubwordLeftSelect",
+                                       "when": "editorTextFocus" },
+    { "key": "alt+shift+right",     "command": "subwordNavigation.cursorSubwordRightSelect",
+                                       "when": "editorTextFocus" },
+    { "key": "alt+backspace",       "command": "subwordNavigation.deleteSubwordLeft",
+                                       "when": "editorTextFocus" },
+    { "key": "alt+delete",          "command": "subwordNavigation.deleteSubwordRight",
+                                       "when": "editorTextFocus" },
 ]
 ```
