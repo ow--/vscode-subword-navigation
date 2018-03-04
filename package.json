@@ -4,7 +4,7 @@
     "publisher": "ow",
     "displayName": "Subword Navigation",
     "description": "The missing code navigation feature.",
-    "icon": "images/icon.svg",
+    "icon": "images/icon.png",
     "galleryBanner": {
         "color": "#efedf9",
         "theme": "light"
@@ -33,12 +33,14 @@
     ],
     "main": "./out/extension",
     "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
-        "compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
     },
     "devDependencies": {
-        "typescript": "^1.8.9",
-        "vscode": "^0.11.x"
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "@types/node": "^7.0.43"
     }
 }
