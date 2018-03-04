@@ -1,6 +1,6 @@
 {
     "name": "vscode-subword-navigation",
-    "version": "1.1.5",
+    "version": "1.2.0",
     "publisher": "ow",
     "displayName": "Subword Navigation",
     "description": "The missing code navigation feature.",
@@ -32,6 +32,46 @@
         "onCommand:subwordNavigation.deleteSubwordRight"
     ],
     "main": "./out/extension",
+    "contributes": {
+        "keybindings": [
+            {
+                "command": "subwordNavigation.cursorSubwordRight",
+                "key": "alt+right",
+                "mac": "ctrl+right",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "subwordNavigation.cursorSubwordRightSelect",
+                "key": "alt+shift+right",
+                "mac": "ctrl+shift+right",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "subwordNavigation.cursorSubwordLeft",
+                "key": "alt+left",
+                "mac": "ctrl+left",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "subwordNavigation.cursorSubwordLeftSelect",
+                "key": "alt+shift+left",
+                "mac": "ctrl+shift+left",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "subwordNavigation.deleteSubwordLeft",
+                "key": "alt+backspace",
+                "mac": "ctrl+backspace",
+                "when": "editorTextFocus && !editorReadonly"
+            },
+            {
+                "command": "subwordNavigation.deleteSubwordRight",
+                "key": "alt+delete",
+                "mac": "ctrl+delete",
+                "when": "editorTextFocus && !editorReadonly"
+            }
+        ]
+    },
     "scripts": {
         "vscode:prepublish": "npm run compile",
         "compile": "tsc -p ./",

@@ -1,3 +1,6 @@
+### 1.2.0
+* Added default keybindings in order to populate the new binding interface
+
 ### 1.1.5
 * Fixed word boundary regression
 
