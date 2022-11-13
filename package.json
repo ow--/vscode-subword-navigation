@@ -30,7 +30,7 @@
         "onCommand:subwordNavigation.cursorSubwordRightSelect",
         "onCommand:subwordNavigation.deleteSubwordLeft",
         "onCommand:subwordNavigation.deleteSubwordRight",
-        "onCommand.subwordNavigation.expandSubwordSelection"
+        "onCommand:subwordNavigation.expandSubwordSelection"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -73,7 +73,7 @@
             },
             {
                 "command": "subwordNavigation.expandSubwordSelection",
-                "key": "alt++shift+w",
+                "key": "alt+shift+w",
                 "mac": "ctrl+shift+up",
                 "when": "editorTextFocus && !editorReadonly"
                 
