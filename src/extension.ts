@@ -25,4 +25,8 @@ export function activate() {
     commands.registerCommand(
         'subwordNavigation.deleteSubwordRight',
         () => subwordNavigation.deleteSubwordRight(window.activeTextEditor));
+
+    commands.registerCommand(
+        'subwordNavigation.expandSubwordSelection',
+        () => subwordNavigation.expandSubwordSelection(window.activeTextEditor));
 }
