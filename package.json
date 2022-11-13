@@ -29,7 +29,8 @@
         "onCommand:subwordNavigation.cursorSubwordLeftSelect",
         "onCommand:subwordNavigation.cursorSubwordRightSelect",
         "onCommand:subwordNavigation.deleteSubwordLeft",
-        "onCommand:subwordNavigation.deleteSubwordRight"
+        "onCommand:subwordNavigation.deleteSubwordRight",
+        "onCommand.subwordNavigation.expandSubwordSelection"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -69,6 +70,13 @@
                 "key": "alt+delete",
                 "mac": "ctrl+delete",
                 "when": "editorTextFocus && !editorReadonly"
+            },
+            {
+                "command": "subwordNavigation.expandSubwordSelection",
+                "key": "alt++shift+w",
+                "mac": "ctrl+shift+up",
+                "when": "editorTextFocus && !editorReadonly"
+                
             }
         ]
     },

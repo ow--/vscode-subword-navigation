@@ -25,6 +25,11 @@ export function deleteSubwordRight(editor: TextEditor) {
     deleteSubword(editor, right);
 }
 
+export function expandSubwordSelection(editor: TextEditor) {
+    editor.selections = editor.selections.map(s => new Selection(left(editor.document, s.active), right(editor.document, s.active)))
+    reveal(editor)
+}
+
 function cursorSubword(editor: TextEditor, next: BoundaryFunc, sel: SelectionFunc) {
     editor.selections = editor.selections.map(s => sel(s, next(editor.document, s.active)));
     reveal(editor);
