@@ -14,4 +14,5 @@ subwordNavigation.cursorSubwordLeftSelect
 subwordNavigation.cursorSubwordRightSelect
 subwordNavigation.deleteSubwordLeft
 subwordNavigation.deleteSubwordRight
+subwordNavigation.expandSubwordSelection
 ```

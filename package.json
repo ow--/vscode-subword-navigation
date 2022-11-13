@@ -30,7 +30,7 @@
         "onCommand:subwordNavigation.cursorSubwordRightSelect",
         "onCommand:subwordNavigation.deleteSubwordLeft",
         "onCommand:subwordNavigation.deleteSubwordRight",
-        "onCommand.subwordNavigation.expandSubwordSelection"
+        "onCommand:subwordNavigation.expandSubwordSelection"
     ],
     "main": "./out/extension",
     "contributes": {
