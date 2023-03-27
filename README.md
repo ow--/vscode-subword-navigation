@@ -1,17 +1,28 @@
 # Subword Navigation for Visual Studio Code
-The missing code navigation feature causing developers all over the world such hardship and time loss by having to reach for that pesky mouse or selecting parts of words one single character at the time. No warranty.
+Subword Navigation is a Visual Studio Code extension that allows developers to navigate through code using subwords. With Subword Navigation, developers can save time and avoid the hassle of reaching for the mouse or selecting parts of words one character at a time.
+
+## Features
+Subword Navigation offers the following features:
+- Same behavior as VSCode's but with subword navigation.
+- Override VSCode's default word navigation.
+- Navigate through camelCase, CamelHumps, snake_case, and kebab-case words.
+- Works with multiple cursors for efficient editing.
+- Customizable keyboard shortcuts.
 
 ## Usage
-Open the new keyboard shortcuts interface and search for `subword`. The default bindings follow Sublime and Xcode, I think, but might overwrite something you like.
+Subword Navigation is activated by default once you have installed and enabled the extension in Visual Studio Code.
 
-Note that `ctrl+left/right` might be reserved by Mission Control on macOS and would have to be turned off in the settings because we all know you'd rather fly through subwords in here with the correct shortcut than whatever Mission Control does.
+To customize the keyboard shortcuts, open the keyboard shortcuts interface and search for `subword`. From there, you can assign your preferred shortcuts to the commands.
 
-## Available Commands
-```
-subwordNavigation.cursorSubwordLeft
-subwordNavigation.cursorSubwordRight
-subwordNavigation.cursorSubwordLeftSelect
-subwordNavigation.cursorSubwordRightSelect
-subwordNavigation.deleteSubwordLeft
-subwordNavigation.deleteSubwordRight
-```
+## Mapping
+| Command | Overrides | Keybinding |
+| --- | --- | --- |
+| `subwordNavigation.cursorWordLeft` | `cursorWordLeft` | <kbd>Ctrl</kbd> + <kbd>Left</kbd> |
+| `subwordNavigation.cursorWordLeftSelect` | `cursorWordLeftSelect` | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Left</kbd> |
+| `subwordNavigation.cursorWordRight` | `cursorWordRight` | <kbd>Ctrl</kbd> + <kbd>Right</kbd> |
+| `subwordNavigation.cursorWordRightSelect` | `cursorWordRightSelect` | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Right</kbd> |
+| `subwordNavigation.deleteWordLeft` | `deleteWordLeft` | <kbd>Ctrl</kbd> + <kbd>Backspace</kbd> |
+| `subwordNavigation.deleteWordRight` | `deleteWordRight` | <kbd>Ctrl</kbd> + <kbd>Delete</kbd> |
+
+## License
+Subword Navigation is released under the [MIT License](https://opensource.org/licenses/MIT).
